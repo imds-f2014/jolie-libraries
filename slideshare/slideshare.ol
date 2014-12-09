@@ -21,7 +21,7 @@ inputPort SlideshareLibrary {
 }
 embedded {
 	Java:
-		"HashTextTest" in SHA
+		"SHA1" in SHA
 }
 
 outputPort Slideshare {
