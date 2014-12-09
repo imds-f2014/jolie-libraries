@@ -2,7 +2,8 @@ include "slideshare.iol"
 include "time.iol"
 include "string_utils.iol"
 include "console.iol"
-
+include "ini_utils.iol"
+include "file.iol"
 execution { concurrent }
 
 interface SHAInterface {
@@ -37,6 +38,12 @@ outputPort Slideshare {
 }
 
 init {
+	getServiceDirectory@File()( servDir );
+	getFileSeparator@File()( fs );
+	parseIniFile@IniUtils( servDir + fs + ".." + fs + "config.ini" )( config );
+	undef( servDir ); undef( fs );
+	APIKEY = config.Slideshare.APIKEY;
+	SHAREDSECRET = config.Slideshare.SHAREDSECRET
 }
 
 define calcTimeAndHash {
